@@ -1,0 +1,44 @@
+/* Card container */
+.chart-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;        /* gray-200 */
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+}
+
+/* Big, bold chart title */
+.chart-title {
+  margin: 0 0 12px 0;
+  font-weight: 800;                  /* extra bold */
+  line-height: 1.2;
+  color: #0f172a;                    /* slate-900 */
+  font-size: 20px;
+}
+
+@media (min-width: 640px) {
+  .chart-title { font-size: 24px; }  /* larger on wider screens */
+}
+
+/* Make chart ticks/labels/legend a touch larger & bolder */
+.chart-card .recharts-text {
+  font-size: 14px;
+  font-weight: 600;
+  fill: #0f172a;
+}
+
+.chart-card .recharts-cartesian-axis-tick-value {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.chart-card .recharts-legend-item-text {
+  font-size: 14px;
+  font-weight: 600;
+  fill: #0f172a;
+}
+
+.chart-card .recharts-tooltip-wrapper .recharts-default-tooltip {
+  font-size: 14px;
+  font-weight: 600;
+}

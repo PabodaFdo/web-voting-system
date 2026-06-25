@@ -1,0 +1,49 @@
+<svg width="760" height="220" viewBox="0 0 760 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Bright Future logo</title>
+  <desc id="desc">A sunrise ballot mark beside the Bright Future wordmark.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="760" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#061827"/>
+      <stop offset="0.52" stop-color="#0B2F45"/>
+      <stop offset="1" stop-color="#123524"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="73" y1="50" x2="154" y2="151" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDE68A"/>
+      <stop offset="0.48" stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#22C55E"/>
+    </linearGradient>
+    <linearGradient id="word" x1="205" y1="63" x2="590" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="0.5" stop-color="#BAE6FD"/>
+      <stop offset="1" stop-color="#BBF7D0"/>
+    </linearGradient>
+    <filter id="glow" x="28" y="18" width="166" height="166" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.22 0 0 0 0 0.74 0 0 0 0 0.97 0 0 0 0.42 0"/>
+      <feBlend in="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="760" height="220" rx="32" fill="url(#bg)"/>
+  <path d="M32 177C143 127 240 130 350 165C457 199 592 201 728 142" stroke="#7DD3FC" stroke-opacity="0.12" stroke-width="38" stroke-linecap="round"/>
+  <path d="M30 58C142 88 248 83 337 49C462 1 585 25 731 73" stroke="#BBF7D0" stroke-opacity="0.1" stroke-width="24" stroke-linecap="round"/>
+
+  <g filter="url(#glow)">
+    <circle cx="112" cy="102" r="66" fill="#0F172A" stroke="#7DD3FC" stroke-opacity="0.28" stroke-width="2"/>
+    <path d="M76 103C76 83.1 92.1 67 112 67C131.9 67 148 83.1 148 103H76Z" fill="url(#sun)"/>
+    <path d="M68 107H156L143 164H81L68 107Z" fill="#F8FAFC"/>
+    <path d="M81 92H143L158 107H66L81 92Z" fill="#DBEAFE"/>
+    <path d="M94 132L108 146L134 116" stroke="#16A34A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M112 48V34M147 62L157 52M163 101H177M77 62L67 52M61 101H47" stroke="#FDE68A" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <text x="205" y="98" fill="url(#word)" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="54" font-weight="900">Bright Future</text>
+  <text x="209" y="137" fill="#C8E7F0" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="600">Student Awards Voting System</text>
+
+  <rect x="210" y="158" width="132" height="30" rx="15" fill="#22C55E" opacity="0.16"/>
+  <text x="235" y="179" fill="#BBF7D0" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="800">Spring Boot</text>
+  <rect x="354" y="158" width="92" height="30" rx="15" fill="#38BDF8" opacity="0.16"/>
+  <text x="381" y="179" fill="#BAE6FD" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="800">React</text>
+  <rect x="458" y="158" width="104" height="30" rx="15" fill="#FDE68A" opacity="0.17"/>
+  <text x="480" y="179" fill="#FEF3C7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="800">H2 Local</text>
+</svg>

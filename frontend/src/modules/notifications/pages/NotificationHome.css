@@ -1,0 +1,102 @@
+/* === Page background: one smooth gradient for the whole page === */
+body.nh-body-bg {
+  margin: 0 !important;
+  background: linear-gradient(135deg,#2aa3f4 0%,#a0d5ff 35%,#b2e0c4 100%) !important;
+  background-attachment: fixed;
+}
+
+/* Make sections float on the gradient (no extra paint) */
+.nh-home { min-height: 100vh; color:#0f172a; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background: transparent !important; position: relative; }
+.nh-hero, .nh-stats, .nh-main { position: relative; z-index: 1; }
+
+/* — Optional safety layer in case some global stylesheet overrides body bg — */
+.nh-home::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg,#2aa3f4 0%,#a0d5ff 35%,#b2e0c4 100%);
+}
+
+/* glass nav */
+.nh-top-nav{position:sticky;top:16px;z-index:100;max-width:1200px;margin:16px auto 24px;padding:18px 24px;background:rgba(255,255,255,.95);border:1px solid rgba(255,255,255,.8);border-radius:20px;backdrop-filter:blur(16px) saturate(180%);box-shadow:0 18px 40px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.55)}
+.nh-top-nav.scrolled{box-shadow:0 25px 60px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.55)}
+.nh-nav-content{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.nh-nav-brand{display:flex;align-items:center;gap:14px}
+.nh-nav-logo{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;color:#2f89d9;background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(255,255,255,.6));box-shadow:0 12px 28px rgba(0,0,0,.16),inset 0 1px 2px rgba(255,255,255,.85)}
+.nh-nav-title{font-size:22px;font-weight:900;background:linear-gradient(135deg,#3aa0ea,#2f89d9);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nh-nav-links{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.nh-nav-link{display:flex;align-items:center;gap:8px;padding:12px 18px;border-radius:14px;font-size:14px;font-weight:800;color:#0b1626;text-decoration:none;border:1px solid transparent;background:#fff;box-shadow:0 8px 20px rgba(16,24,40,.08);transition:transform .15s,background .15s,border-color .15s}
+.nh-nav-link:hover{transform:translateY(-2px);background:#f8fafc;border-color:#cbd5e1}
+.nh-nav-link.is-active{color:#fff;background:linear-gradient(135deg,#3aa0ea,#2f89d9);box-shadow:0 10px 24px rgba(42,150,240,.28)}
+.nh-nav-link-text{display:none}
+@media (min-width:640px){.nh-nav-link-text{display:inline}}
+.nh-nav-back{display:flex;align-items:center;gap:10px;padding:12px 18px;background:linear-gradient(135deg,#fff,#f8fafc);border:1px solid #e5e7eb;border-radius:14px;font-size:14px;font-weight:800;color:#0b1626;cursor:pointer;box-shadow:0 12px 28px rgba(0,0,0,.14);transition:transform .15s}
+.nh-nav-back:hover{transform:translateY(-2px)}
+.nh-i{width:20px;height:20px;color:inherit}.nh-i.sm{width:16px;height:16px}
+
+/* hero */
+.nh-hero{max-width:1200px;margin:0 auto 24px;padding:0 24px;text-align:center}
+.nh-hero-inner{padding-top:6px}
+.nh-hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(255,255,255,.95);border:2px solid rgba(255,255,255,.8);border-radius:999px;font-size:14px;font-weight:700;color:#3aa0ea;margin:24px 0;box-shadow:0 8px 20px rgba(0,0,0,.1)}
+.nh-hero-title{font-size:64px;font-weight:900;line-height:1.1;margin-bottom:20px;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.1)}
+.nh-gradient-text{display:block;background:linear-gradient(135deg,#ffffff,#e0f2fe);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nh-hero-desc{font-size:20px;color:rgba(255,255,255,.95);margin:0 auto 36px;max-width:600px;line-height:1.6;text-shadow:0 1px 4px rgba(0,0,0,.1)}
+.nh-hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.nh-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:16px;font-weight:800;text-decoration:none;border:0;cursor:pointer;transition:all .2s}
+.nh-btn-primary{background:#fff;color:#2f89d9;box-shadow:0 12px 32px rgba(0,0,0,.15)}
+.nh-btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.2)}
+.nh-btn-ghost{background:rgba(255,255,255,.2);color:#fff;border:2px solid rgba(255,255,255,.4);backdrop-filter:blur(10px)}
+.nh-btn-ghost:hover{background:rgba(255,255,255,.3);border-color:rgba(255,255,255,.6);transform:translateY(-3px)}
+
+/* stats */
+.nh-stats{max-width:1200px;margin:0 auto 48px;padding:0 24px}
+.nh-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.nh-stat-card{display:flex;align-items:flex-start;gap:16px;padding:24px;background:rgba(255,255,255,.95);border:2px solid rgba(255,255,255,.8);border-radius:20px;box-shadow:0 14px 38px rgba(16,24,40,.12);transition:all .3s}
+.nh-stat-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(16,24,40,.18)}
+.nh-stat-icon{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;color:#fff;flex-shrink:0}
+.nh-stat-value{font-size:32px;font-weight:900;color:#0f172a;line-height:1;margin-bottom:6px}
+.nh-stat-label{font-size:14px;color:#64748b;font-weight:700;margin-bottom:8px}
+.nh-stat-trend{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#10b981}
+
+/* main */
+.nh-main{max-width:1200px;margin:0 auto 48px;padding:0 24px;display:grid;grid-template-columns:1fr;gap:24px}
+@media (min-width:1024px){.nh-main{grid-template-columns:1fr 1fr}}
+.nh-card{background:rgba(255,255,255,.95);border:2px solid rgba(255,255,255,.8);border-radius:20px;padding:28px;box-shadow:0 14px 38px rgba(16,24,40,.12)}
+.nh-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.nh-card-title{font-size:20px;font-weight:900;color:#0f172a}
+.nh-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:#3aa0ea;text-decoration:none;transition:gap .2s}
+.nh-link:hover{gap:10px}
+
+.nh-qa-grid{display:flex;flex-direction:column;gap:14px}
+.nh-qa{display:flex;align-items:center;gap:16px;padding:20px;background:#f8fafc;border:2px solid #e2e8f0;border-radius:16px;text-decoration:none;transition:all .2s}
+.nh-qa:hover{transform:translateX(4px);border-color:#cbd5e1;background:#f1f5f9}
+.nh-qa-icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;color:#fff;flex-shrink:0}
+.nh-qa-title{font-size:16px;font-weight:900;color:#0f172a;margin-bottom:4px}
+.nh-qa-desc{font-size:13px;color:#64748b;font-weight:600}
+.nh-qa-arrow{color:#94a3b8;transition:transform .2s}
+.nh-qa:hover .nh-qa-arrow{transform:translateX(4px)}
+
+/* activity */
+.nh-activity-list{display:flex;flex-direction:column;gap:12px}
+.nh-activity-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;transition:all .2s}
+.nh-activity-item:hover{background:#f1f5f9;border-color:#cbd5e1}
+.nh-activity-left{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.nh-activity-status{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;flex-shrink:0}
+.nh-activity-status.sent{background:#d1fae5;color:#065f46}
+.nh-activity-status.pending{background:#fef9c3;color:#92400e}
+.nh-activity-info{flex:1;min-width:0}
+.nh-activity-subject{font-size:15px;font-weight:900;color:#0f172a;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nh-activity-meta{font-size:12px;color:#64748b;font-weight:600;display:flex;align-items:center;gap:6px}
+.nh-dot{opacity:.5}
+.nh-badge{padding:6px 12px;border-radius:999px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.nh-badge-sent{background:#d1fae5;color:#065f46}
+.nh-badge-pending{background:#fef9c3;color:#92400e}
+
+/* responsive tweaks */
+@media (max-width:768px){
+  .nh-hero-title{font-size:42px}
+  .nh-hero-desc{font-size:18px}
+  .nh-stats-grid{grid-template-columns:1fr}
+}
