@@ -5,7 +5,7 @@ import {
   addResultItem, deleteResultItem, publishResultSet, exportCsv, api
 } from "../api";
 import SetDataCategoryDash from "./SetDataCategoryDash";
-import "./SetDetail.css";
+import "./setDetail.css";
 
 /* ---------- Tiny toast hook (matches Results/Analytics vibe) ---------- */
 function useToasts() {
