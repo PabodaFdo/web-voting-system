@@ -2,104 +2,148 @@
   <img src="./docs/logo.svg" alt="Bright Future logo" width="720" />
 </p>
 
-<h1 align="center">Bright Future</h1>
+# Web-based Voting System for Award Nominations
+**Group:** 2025-Y2-S1-MLB-B8G1-02
 
-<p align="center">
-  🎓 A full-stack student awards voting platform with events, nominees, dashboards, notifications, and results.
-</p>
+## 🚀 Overview
+A secure, web-based e-voting platform for campus award nominations. Final-year students vote once per category, admins manage events/categories/nominees, and organizers publish results with transparent reports and dashboards.
 
-<p align="center">
-  <strong>Spring Boot API</strong> · <strong>React/Vite UI</strong> · <strong>H2 Local DB</strong>
-</p>
+## 🎯 Core Goals
+- Online voting with **one vote per category per student**
+- Admin tools to **create categories**, **manage nominees**, **monitor progress**
+- **Results generation** with exports and public publishing
+- **Access control** with password management and reset flows
 
-## ✨ Overview
+## 👥 Stakeholders / Users
+- Final-Year Students (Voters)
+- Admin Staff
+- Event Organizers / Supervisors
+- IT Support
+- Public viewers (nominees & winners only)
 
-Bright Future lets students register, sign in, and vote in active campus award events. Admin users can manage events, categories, nominees, students, notifications, dashboards, and published result reports from one connected web app.
+## 🧩 Major Modules (RACI by owner)
+- **Voting Management** – IT24101873 (Jesmeen M.B.A)
+- **Award Categories & Nominee Management** – IT24101829 (Ranasinghe R.P.V.K.)
+- **Notification & Email Reminder System** – IT24101927 (Liyanage J.L.K.L.)
+- **Voting Progress Dashboard** – IT24103815 (Fernando W.P.S.)
+- **Results & Report Management** – IT24101972 (Nethsara K.P.S.)
+- **Access Control & Password Management** – IT24101952 (Senevirathna U.K.J.)
 
-The project is organized as one Spring Boot backend and one React/Vite frontend, so the modules are easier to run, test, and maintain.
+## ✅ Key Features
+- Secure login (students/admins), role-based access, password reset
+- Admin CRUD for categories & nominees (with validation)
+- One-vote-per-category enforcement, review before submit
+- Live dashboard (category/nominee progress, KPIs)
+- Result computation, tie handling, CSV/PDF exports, public results page
+- Email reminders (before close) and result notifications
 
-## 🗂 Project Layout
-
+## 🏗️ Architecture (Typical Monorepo)
 ```text
-.
-|-- backend/        Spring Boot API, security, database, reports, and mail
-|-- frontend/       React/Vite app with all UI modules
-|-- data/           Local H2 database files for development
-|-- docs/           Logo and README assets
-`-- README.md
+/backend/         # Spring Boot (Java 17, Maven, H2 for dev/test)
+/frontend/        # React (Vite) SPA
 ```
+**Tech stack:** Java 17, Spring Boot, Spring Data JPA, H2 (dev), MySQL (prod-ready), React (Vite), JavaMail, BCrypt, JWT.
 
-## 🧰 Requirements
+## 🗃️ Data Model (high-level)
+- **User**(id, username/email, role[STUDENT, ADMIN, ORGANIZER, IT_COORDINATOR], passwordHash, status)
+- **Event**(id, name, startAt, endAt, status)
+- **Category**(id, eventId, name, status)
+- **Nominee**(id, categoryId, name, bio, photoUrl, status)
+- **Vote**(id, voterId, categoryId, nomineeId, createdAt) — unique(voterId, categoryId)
+- **Notification**(id, subject, body, scheduledFor, status, archived)  
 
-- Java 17
-- Node.js 18 or newer
-- npm
+## 🔐 Security
+- BCrypt password hashing
+- Role-based authorization (Student/Admin/Organizer)
+- Session management (JWT) and account lockout on repeated failures
+- Password reset via email token
 
-## 🚀 Run Locally
+## 📈 Non-Functional Requirements
+- Mobile-friendly, accessible UI
+- Target ≤2s response for typical actions; scale to hundreds of concurrent voters
+- 99% uptime during voting windows; regular backups
+- HTTPS in deployment; audit logs for admin actions
 
-Start the backend:
+## ⚙️ Getting Started
 
-```powershell
+### Prerequisites
+- Java 17, Maven 3.9+
+- Node.js 18+ and npm
+- IDEs: IntelliJ IDEA (backend), VS Code/WebStorm (frontend)
+
+### 1) Backend (Spring Boot + H2)
+```bash
 cd backend
 .\mvnw.cmd spring-boot:run
 ```
 
-Start the frontend in a second terminal:
+**Default dev config (H2) via `application.yml`:**
+```yaml
+spring:
+  datasource:
+    url: jdbc:h2:file:../data/testdb;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+```
 
-```powershell
+### 2) Frontend (React + Vite)
+```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-Local URLs:
+### 3) Login & Roles (seed)
+- The database is automatically seeded upon startup with default data.
+- **Admin**: `admin` / `123`
+- **Student**: `STU001` / `pass123` (or generic `student` / `123`)
 
-| App | URL |
-| --- | --- |
-| 🌐 Frontend | `http://localhost:5173` |
-| 🔌 Backend API | `http://localhost:8080` |
-| 🗄 H2 console | `http://localhost:8080/h2-console` |
+## 🧪 Sample API (illustrative)
+- `POST /api/auth/login` – authenticate user
+- `GET /api/categories` – list categories (+ nominees)
+- `POST /api/votes/submit` – submit all category votes (one-shot)
+- `GET /api/dashboard` – admin KPIs & charts
+- `POST /api/results/generate` – compute winners & export
+- `POST /api/notifications/send` – send reminders/results  
 
-## ✅ Checks
+## 📤 Reports & Publishing
+- Admin can **generate results**, **review**, **export CSV/PDF**, and **publish** to a public page after voting closes.  
+- Tie rules and freeze flags recommended.
 
-Backend:
+## 🔔 Notifications
+- Compose reminders; **schedule** (e.g., T-48h, T-24h) or **send now**  
+- Store send logs; add retry/backoff in production.
 
-```powershell
-cd backend
-.\mvnw.cmd test
-```
+## 📊 Dashboard
+- Live progress (total votes, turnout, per-category counts)
+- Lightweight polling (e.g., 10s) or SSE/WebSocket upgrade later
+- Optional CSV/PDF export of progress snapshots
 
-Frontend:
+## 🧭 Project Management (Semester Flow)
+- **Week 3:** Proposal & requirements
+- **Weeks 4–6:** Design (ERD, use cases, UI)
+- **Weeks 7–11:** Implementation (≥75% by Week 10)
+- **Weeks 12–13:** Testing & optimization
+- **Week 14:** Final demo + report submission
 
-```powershell
-cd frontend
-npm run lint
-npm run build
-```
+## 👪 Team & Responsibilities
+- Jesmeen (IT24101873): Voting Management
+- Ranasinghe (IT24101829): Categories & Nominees
+- Liyanage (IT24101927): Notifications
+- Fernando (IT24103815): Dashboard
+- Nethsara (IT24101972): Results & Reports
+- Senevirathna (IT24101952): Access Control & Passwords
 
-## ⚙️ Environment
-
-Backend configuration lives in `backend/src/main/resources/application.yml`. Use `backend/.env.example` as a reference for local or deployment environment variables.
-
-Use `frontend/.env.example` as the reference for frontend configuration.
-
-Common backend variables:
-
-- `SPRING_DATASOURCE_URL`
-- `SPRING_DATASOURCE_USERNAME`
-- `SPRING_DATASOURCE_PASSWORD`
-- `APP_JWT_SECRET`
-- `SPRING_MAIL_USERNAME`
-- `SPRING_MAIL_PASSWORD`
-- `APP_MAIL_FROM_ADDRESS`
-- `APP_MAIL_FROM_NAME`
-
-## 🧼 Repo Hygiene
-
-Build output, dependencies, secrets, and local data should stay out of Git. That includes `node_modules/`, `target/`, `frontend/dist/`, and H2 database files under `data/`.
-
-The repo includes:
-
-- `.gitignore` for build output, local databases, editor files, and secrets
-- `.editorconfig` for editor formatting defaults
-- `.gitattributes` for consistent line endings, including Maven wrapper scripts
+## 🧭 How to Demo
+1. Login as **Admin** (`admin`/`123`), create categories & nominees  
+2. Create a **Student** account (or use seeded `STU001`) and login  
+3. Cast votes (one per category) → submit → confirmation  
+4. As **Admin**, open **Dashboard** (live counts)  
+5. Close voting → **Generate results** → export CSV/PDF → **Publish** public page  
+6. Send **result emails** to voters
